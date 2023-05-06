@@ -3,9 +3,9 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toast";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -15,20 +15,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("bg-white text-slate-900 antialiased", inter.className)}
+      className={cn("bg-white text-slate-900 antialiased", roboto.className)}
     >
       <body className="min-h-screen bg-slate-50 dark:bg-slate-900 antialiased">
         <Providers>
-          {children}
+          {/* @ts-expect-error Server Component */}
+          <Navbar />
+          <Toaster position="bottom-right" />
 
-          <Toaster position="bottom-right"/>
-        
-        {/* @ts-expect-error Server Component */}
-        <Navbar/>
+          <main>{children}</main>
         </Providers>
 
-        {/* Allow for more height for mobile devices */}
-        <div className="h-40 md:hidden"/>
+        {/* Allow more height for mobile menu on mobile */}
+        <div className="h-40 md:hidden" />
       </body>
     </html>
   );
