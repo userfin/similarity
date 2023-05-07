@@ -3,3 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 /* stylelint-enable */
+
+.dark .three-d {
+    text-shadow: 0px 5px 0px #533519;
+}
+.three-d {
+    text-shadow: none;
+}
